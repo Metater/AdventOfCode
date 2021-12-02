@@ -1,4 +1,4 @@
-﻿bool runAll = true;
+﻿bool runAll = false;
 
 if (runAll)
 {
@@ -17,10 +17,10 @@ if (runAll)
 }
 else
 {
-    //var d1p1 = new Day1P1(Input("Day1"));
-    //d1p1.Run();
-    var d1p2 = new Day1P2(Input("Day1"));
-    d1p2.Run();
+    var e = new Day2P2(Input("Day2"));
+    e.Run();
+    //var d1p2 = new Day1P2(Input("Day1"));
+    //d1p2.Run();
 }
 
 static string[] Input(string day)
