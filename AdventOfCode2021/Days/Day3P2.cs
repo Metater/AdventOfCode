@@ -2,38 +2,54 @@
 
 public class Day3P2 : Day
 {
-    private List<string> oxy;
-    private List<string> co2;
 
     public Day3P2(string[] input) : base(input)
     {
-        oxy = new List<string>(input);
-        co2 = new List<string>(input);
+
     }
 
     public override void Run()
     {
-        int oxyRating;
-        for (int j = 0; j < input[0].Length; j++)
-        {
-            int zeros = 0;
-            int ones = 0;
-            for (int i = 0; i < oxy.Count; i++)
-            {
-                if (input[i][j] == '0') zeros++;
-                else ones++;
-            }
-            List<string> o = new List<string>();
-            for (int i = 0; i < oxy.Count; i++)
-            {
+    }
 
-                if (oxy.Count == 1) oxyRating = Convert.ToInt32(oxy[0]);
+    private int GetOxygenGeneratorRating()
+    {
+        List<string> l = new List<string>(input);
+        List<string> temp = new List<string>();
+        for (int i = 0; i < input[0].Length; i++)
+        {
+            foreach (string line in l)
+            {
+                (int, int) zo = GetZerosOnes(l, i);
+                if (zo.Item1 < zo.Item2) temp.Add(line);
             }
+            l = temp;
         }
     }
 
     private int GetLifeSupportRating(int oxyGenRating, int co2ScrubRating)
     {
         return oxyGenRating * co2ScrubRating;
+    }
+
+    private int ToInt(string s)
+    {
+        return Convert.ToInt32(s, 2);
+    }
+
+    private (int, int) GetZerosOnes(List<string> l, int i)
+    {
+        int zeros = 0;
+        int ones = 0;
+
+        int maxIndex = l[0].Length - 1;
+
+        foreach (string line in l)
+        {
+            if (line[maxIndex - i] == '0') zeros++;
+            else ones++;
+        }
+
+        return (zeros, ones);
     }
 }
