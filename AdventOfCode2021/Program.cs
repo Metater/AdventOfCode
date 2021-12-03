@@ -17,7 +17,7 @@ if (runAll)
 }
 else
 {
-    var e = new Day2P2(Input("Day2"));
+    var e = new Day3P1(Input("Day3"));
     e.Run();
     //var d1p2 = new Day1P2(Input("Day1"));
     //d1p2.Run();
@@ -25,5 +25,5 @@ else
 
 static string[] Input(string day)
 {
-    return File.ReadAllLines(@"C:\Users\Connor\source\repos\AdventOfCode\AdventOfCode2021\input\" + day + ".txt");
+    return File.ReadAllLines(@"E:\Projects\Visual Studio\AdventOfCode\AdventOfCode2021\input\" + day + ".txt");
 }
