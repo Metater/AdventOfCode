@@ -2,61 +2,38 @@
 
 public class Day3P2 : Day
 {
+    private List<string> oxy;
+    private List<string> co2;
+
     public Day3P2(string[] input) : base(input)
     {
-
+        oxy = new List<string>(input);
+        co2 = new List<string>(input);
     }
 
     public override void Run()
     {
-        Sub sub = new Sub();
-        foreach (var line in input)
+        int oxyRating;
+        for (int j = 0; j < input[0].Length; j++)
         {
-            string[] parts = line.Split(' ');
-            int a = int.Parse(parts[1]);
-            switch (parts[0])
+            int zeros = 0;
+            int ones = 0;
+            for (int i = 0; i < oxy.Count; i++)
             {
-                case "forward":
-                    sub.Forward(a);
-                    break;
-                case "up":
-                    sub.Up(a);
-                    break;
-                case "down":
-                    sub.Down(a);
-                    break;
+                if (input[i][j] == '0') zeros++;
+                else ones++;
+            }
+            List<string> o = new List<string>();
+            for (int i = 0; i < oxy.Count; i++)
+            {
+
+                if (oxy.Count == 1) oxyRating = Convert.ToInt32(oxy[0]);
             }
         }
-        sub.Print();
     }
 
-    public class Sub
+    private int GetLifeSupportRating(int oxyGenRating, int co2ScrubRating)
     {
-        int depth = 0;
-        int x = 0;
-        int aim = 0;
-
-        public void Up(int a)
-        {
-            //depth -= a;
-            aim -= a;
-        }
-
-        public void Down(int a)
-        {
-            //depth += a;
-            aim += a;
-        }
-
-        public void Forward(int a)
-        {
-            x += a;
-            depth += aim * a;
-        }
-
-        public void Print()
-        {
-            Console.WriteLine(x * depth);
-        }
+        return oxyGenRating * co2ScrubRating;
     }
 }
