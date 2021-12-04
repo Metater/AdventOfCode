@@ -17,7 +17,7 @@ if (runAll)
 }
 else
 {
-    var e = new Day3P1(Input("Day3"));
+    var e = new Day3P2(Input("Day3"));
     e.Run();
     //var d1p2 = new Day1P2(Input("Day1"));
     //d1p2.Run();
