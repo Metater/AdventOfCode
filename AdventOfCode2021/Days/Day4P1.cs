@@ -20,7 +20,49 @@ public class Day4P1 : Day
         {
             line += 6;
         }
-        Console.WriteLine(boards.Count);
+
+        for (int i = 0; i < nums.Count; i++)
+        {
+            for (int j = 0; j < boards.Count; j++)
+            {
+                MarkBoard(j, nums[i]);
+                if (CheckBoard(boards[j].Item2))
+                {
+                    Console.WriteLine(GetUnmarkedSum(j) * nums[i]);
+                    return;
+                }
+            }
+        }
+    }
+
+    private int GetUnmarkedSum(int index)
+    {
+        int sum = 0;
+        for (int y = 0; y < 5; y++)
+        {
+            for (int x = 0; x < 5; x++)
+            {
+                if (!boards[index].Item2[x, y])
+                {
+                    sum += boards[index].Item1[x, y];
+                }
+            }
+        }
+        return sum;
+    }
+
+    private void MarkBoard(int index, int num)
+    {
+        for (int y = 0; y < 5; y++)
+        {
+            for (int x = 0; x < 5; x++)
+            {
+                if (boards[index].Item1[x, y] == num)
+                {
+                    boards[index].Item2[x, y] = true;
+                }
+            }
+        }
     }
 
     private bool GetBoard(int startLine)
@@ -47,10 +89,27 @@ public class Day4P1 : Day
 
     private bool CheckBoard(bool[,] board)
     {
-        bool 
-        for (int i = 0; i < 5; i++)
+        // horizontal
+        for (int y = 0; y < 5; y++)
         {
-
+            int row = 0;
+            for (int x = 0; x < 5; x++)
+            {
+                if (board[x, y]) row++;
+            }
+            if (row == 5) return true;
         }
+
+        // vertical
+        for (int x = 0; x < 5; x++)
+        {
+            int col = 0;
+            for (int y = 0; y < 5; y++)
+            {
+                if (board[x, y]) col++;
+            }
+            if (col == 5) return true;
+        }
+        return false;
     }
 }
