@@ -10,7 +10,7 @@ public class Day3P2 : Day
 
     public override void Run()
     {
-        Console.WriteLine(GetCO2ScrubberRating());
+        Console.WriteLine(GetOxygenGeneratorRating() * GetCO2ScrubberRating());
     }
 
     private int GetOxygenGeneratorRating()
@@ -58,7 +58,7 @@ public class Day3P2 : Day
                 else ones++;
             }
             char keep = '0';
-            if (zeros >= ones) keep = '1';
+            if (zeros > ones) keep = '1';
             foreach (string line in l)
             {
                 if (line[i] == keep)
@@ -71,11 +71,6 @@ public class Day3P2 : Day
             temp.Clear();
         }
         return ToInt(rating);
-    }
-
-    private int GetLifeSupportRating(int oxyGenRating, int co2ScrubRating)
-    {
-        return oxyGenRating * co2ScrubRating;
     }
 
     private int ToInt(string s)

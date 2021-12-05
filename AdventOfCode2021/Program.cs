@@ -6,21 +6,25 @@ if (runAll)
 
     days.Add(new Day1P1(Input("Day1")));
     days.Add(new Day1P2(Input("Day1")));
+    days.Add(new Day2P1(Input("Day2")));
+    days.Add(new Day2P2(Input("Day2")));
+    days.Add(new Day3P1(Input("Day3")));
+    days.Add(new Day3P2(Input("Day3")));
+    //days.Add(new Day4P1(Input("Day4")));
+    //days.Add(new Day4P2(Input("Day4")));
 
     foreach (Day day in days)
     {
-        Console.WriteLine("\n\n\n\n");
+        Console.WriteLine("\n\n");
         Console.WriteLine($"<-------- Running {day.GetType().Name} -------->");
         day.Run();
-        Console.WriteLine("\n\n\n\n");
+        Console.WriteLine("\n\n");
     }
 }
 else
 {
-    var e = new Day3P2(Input("Day3"));
-    e.Run();
-    //var d1p2 = new Day1P2(Input("Day1"));
-    //d1p2.Run();
+    var d = new Day4P1(Input("Day4"));
+    d.Run();
 }
 
 static string[] Input(string day)
