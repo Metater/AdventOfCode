@@ -25,7 +25,7 @@ if (runAll)
 }
 else
 {
-    var d = new Day5P2(Input("Day5"));
+    var d = new Day6P1(Input("Day6"));
     d.Run();
 }
 
