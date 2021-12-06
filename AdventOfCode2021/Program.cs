@@ -14,6 +14,8 @@ if (runAll)
     days.Add(new Day4P2(Input("Day4")));
     days.Add(new Day5P1(Input("Day5")));
     days.Add(new Day5P2(Input("Day5")));
+    days.Add(new Day6P1(Input("Day6")));
+    days.Add(new Day6P2(Input("Day6")));
 
     foreach (Day day in days)
     {
