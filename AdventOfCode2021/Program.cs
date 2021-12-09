@@ -1,4 +1,4 @@
-﻿bool runAll = false;
+﻿bool runAll = true;
 
 if (runAll)
 {
