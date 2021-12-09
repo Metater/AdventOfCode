@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-//namespace AdventOfCode2021.Days;
+namespace AdventOfCode2021.Days;
 
 public class Day9P2 : Day
 {
