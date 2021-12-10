@@ -9,13 +9,48 @@ public class Day10P2 : Day
 
     public override void Run()
     {
-        int sum = 0;
+        List<long> scores = new();
         foreach (string line in input)
         {
             if (GetSyntaxErrorScore(line) != 0) continue;
-
+            Stack<char> nest = new();
+            for (int i = 0; i < line.Length; i++)
+            {
+                char c = line[i];
+                if (c == '(' || c == '[' || c == '{' || c == '<')
+                    nest.Push(c);
+                else
+                    nest.Pop();
+            }
+            // ints will do that to you, hmm, why are there negatives in the output? hehe
+            long score = 0;
+            foreach (char c in nest)
+            {
+                score *= 5;
+                score += GetValue(c);
+            }
+            scores.Add(score);
         }
-        Console.WriteLine(sum);
+        scores.Sort();
+        /*
+        foreach (int score in scores)
+        {
+            Console.WriteLine(score);
+        }
+        */
+        Console.WriteLine($"Middle Score: {scores[(scores.Count / 2)]}");
+    }
+
+    private int GetValue(char c)
+    {
+        return c switch
+        {
+            '(' => 1,
+            '[' => 2,
+            '{' => 3,
+            '<' => 4,
+            _ => 0,
+        };
     }
 
     private int GetSyntaxErrorScore(string line)
