@@ -22,6 +22,8 @@ if (runAll)
     days.Add(new Day8P2(Input("Day8")));
     days.Add(new Day9P1(Input("Day9")));
     days.Add(new Day9P2(Input("Day9")));
+    days.Add(new Day10P1(Input("Day10")));
+    days.Add(new Day10P2(Input("Day10")));
 
     foreach (Day day in days)
     {
@@ -33,7 +35,7 @@ if (runAll)
 }
 else
 {
-    var d = new Day10P2(Input("Day10"));
+    var d = new Day11P1(Input("Day11"));
     d.Run();
 }
 
