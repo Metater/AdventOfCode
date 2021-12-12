@@ -35,50 +35,36 @@ public class Day12P2 : Day
         {
             if (link.TryFollow(from, out string to))
             {
+                if (to == "start") continue;
                 if (to == "end")
                 {
                     paths.Add(path + ",end");
                     continue;
                 }
-                if (to == "start") continue;
-                if (char.IsLower(to[0]) && PathContains(path, to))
-                {
-                    continue;
-                }
-                Trace(path + "," + to, to);
+                if (CanVisit(path, to))
+                    Trace(path + "," + to, to);
             }
         }
     }
 
-    private bool PathContains(string path, string cave)
+    private bool CanVisit(string path, string cave)
     {
+        if (char.IsUpper(cave[0])) return true;
+
         string[] split = path.Split(',');
-        int count = 0;
+
+        List<string> seen = new();
         foreach (string s in split)
         {
-            if (cave == s) count++;
-        }
-        return count >= 2;
-    }
-
-    /*
-     *         foreach (string link in input)
-        {
-            string[] split = link.Split('-');
-            string start = split[0];
-            string end = split[1];
-            if (start == from)
+            if (char.IsUpper(s[0])) continue;
+            if (seen.Contains(s))
             {
-                path += "," + end;
-                if (end == "end")
-                {
-                    paths.Add(path);
-                }
-                else
-                    Trace(path, end);
+                return !split.Contains(cave);
             }
+            seen.Add(s);
         }
-    */
+        return true;
+    }
 
     public class Link
     {
