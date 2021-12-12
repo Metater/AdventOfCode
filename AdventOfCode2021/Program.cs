@@ -36,7 +36,10 @@ if (runAll)
 else
 {
     var d = new Day11P2(Input("Day11"));
+    Stopwatch sw = Stopwatch.StartNew();
     d.Run();
+    sw.Stop();
+    Console.WriteLine($"Took {sw.ElapsedTicks} ticks");
 }
 
 static string[] Input(string day)
