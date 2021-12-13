@@ -10,8 +10,6 @@ public class Day13P1 : Day
 
     }
 
-    bool[,] paper;
-
     public override void Run()
     {
         List<(int, int)> points = new();
@@ -28,20 +26,60 @@ public class Day13P1 : Day
             points.Add((x, y));
             line++;
         }
-        paper = new bool[maxX + 1, maxY + 1];
-		foreach ((int x, int y) in points)
+		maxX++;
+		maxY++;
+		line++;
+		List<Fold> folds = new();
+		for (int i = line; i < input.Length; i++)
 		{
-			paper[x, y] = true;
+			string[] split = input[i].Split(' ');
+			string[] fold = split[2].Split('=');
+			folds.Add(new Fold(fold[0] == "x", int.Parse(fold[1])));
 		}
-        Console.WriteLine($"Paper Size: ({paper.GetLength(0)}, {paper.GetLength(1)})");
 
-		for (int y = 0; y < paper.GetLength(1); y++)
+
+
+        Console.WriteLine($"Paper Size: ({maxX}, {maxY})");
+		for (int y = 0; y < maxY; y++)
 		{
-			for (int x = 0; x < paper.GetLength(0); x++)
+			for (int x = 0; x < maxX; x++)
 			{
-				Console.Write(paper[x, y] ? "#" : ".");
+				Console.Write(points.Contains((x, y)) ? "#" : ".");
 			}
 			Console.WriteLine();
 		}
+		foreach (Fold fold in folds)
+		{
+			Console.WriteLine($"Fold X Axis: {!fold.x}, Fold At: {fold.line}");
+		}
+
+
+
+
     }
+
+	private (int, int) FoldPoint(Fold fold, (int, int) point)
+	{
+		if (fold.x) // Folding over the y axis
+		{
+
+		}
+		else // Folding over the x axis
+		{
+
+		}
+		return (-1, -1);
+	}
+
+	public struct Fold
+	{
+		public readonly bool x;
+		public readonly int line;
+
+		public Fold(bool x, int line)
+		{
+			this.x = x;
+			this.line = line;
+		}
+	}
 }
