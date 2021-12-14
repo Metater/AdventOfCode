@@ -35,7 +35,7 @@ if (runAll)
 }
 else
 {
-    var d = new Day12P2(Input("Day12"));
+    var d = new Day13P1(Input("Day13"));
     Stopwatch sw = Stopwatch.StartNew();
     d.Run();
     sw.Stop();
