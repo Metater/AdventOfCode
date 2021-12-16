@@ -1,4 +1,4 @@
-﻿bool runAll = false;
+﻿bool runAll = true;
 
 if (runAll)
 {
@@ -24,6 +24,12 @@ if (runAll)
     days.Add(new Day9P2(Input("Day9")));
     days.Add(new Day10P1(Input("Day10")));
     days.Add(new Day10P2(Input("Day10")));
+    days.Add(new Day11P1(Input("Day11")));
+    days.Add(new Day11P2(Input("Day11")));
+    days.Add(new Day12P1(Input("Day12")));
+    days.Add(new Day12P2(Input("Day12")));
+    days.Add(new Day13P1(Input("Day13")));
+    days.Add(new Day13P2(Input("Day13")));
 
     foreach (Day day in days)
     {
@@ -35,7 +41,7 @@ if (runAll)
 }
 else
 {
-    var d = new Day13P2(Input("Day13"));
+    var d = new Day14P1(Input("Day14"));
     Stopwatch sw = Stopwatch.StartNew();
     d.Run();
     sw.Stop();
