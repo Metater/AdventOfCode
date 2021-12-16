@@ -1,8 +1,8 @@
 namespace AdventOfCode2021.Days;
 
-public class Day13P1 : Day
+public class Day13P2 : Day
 {
-    public Day13P1(string[] input) : base(input)
+    public Day13P2(string[] input) : base(input)
     {
 
     }
@@ -46,16 +46,21 @@ public class Day13P1 : Day
         */
 
         List<(int, int)> prime = new();
-        foreach ((int, int) point in points)
+        foreach (Fold fold in folds)
         {
-            if (folds[0].TryFoldPoint(point, out (int, int) p))
+            foreach ((int, int) point in points)
             {
-                prime.Add(p);
+                if (fold.TryFoldPoint(point, out (int, int) p))
+                {
+                    prime.Add(p);
+                }
             }
+            Deduplicate(prime);
+            points = new List<(int, int)>(prime);
+            prime.Clear();
         }
-        Deduplicate(prime);
-        //PrintPoints(maxX, maxY, prime);
-        Console.WriteLine(prime.Count);
+        PrintPoints(points);
+        //Console.WriteLine(prime.Count);
     }
 
     private void Deduplicate(List<(int, int)> points)
@@ -76,15 +81,25 @@ public class Day13P1 : Day
         }
     }
 
-    private static void PrintPoints(int maxX, int maxY, List<(int, int)> points)
+    private static void PrintPoints(List<(int, int)> points)
     {
+        int maxX = -1;
+        int maxY = -1;
+        foreach ((int x, int y) in points)
+        {
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+        }
+        maxX++;
+        maxY++;
         for (int y = 0; y < maxY; y++)
         {
+            string line = "";
             for (int x = 0; x < maxX; x++)
             {
-                Console.Write(points.Contains((x, y)) ? "#" : ".");
+                line += points.Contains((x, y)) ? "#" : ".";
             }
-            Console.WriteLine();
+            Console.WriteLine(line);
         }
     }
 
